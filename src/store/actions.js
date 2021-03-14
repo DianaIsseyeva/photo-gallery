@@ -103,8 +103,6 @@ export const sendProduct =(newProduct) => {
     };
 };
 
-
-
 export const deleteProduct = (item) => {
     return async dispatch => {
         dispatch(sendDeleteRequest());
@@ -132,4 +130,35 @@ export const deleteProduct = (item) => {
         dispatch(sendDeleteError());
     }  
 };
+};
+
+export const sendEditProduct = (item) => {
+    return async dispatch => {
+        dispatch(sendProductRequest());
+        try {
+            await axios.put("https://js-7-march-default-rtdb.firebaseio.com/dishes/" + `${item.id}` + ".json", item);
+            try {
+                let array=[];
+                const response = await axios.get("https://js-7-march-default-rtdb.firebaseio.com/dishes.json");
+                if(response.data) {
+                    Object.keys(response.data).forEach(id => {
+                        const product = {
+                            name: response.data[id].name,
+                            price: response.data[id].price,
+                            image: response.data[id].image,
+                            id: id
+                        };
+                        array.push(product);
+                    });
+                    dispatch(fetchProductsSuccess(array));
+                }
+            } catch(e) {
+                dispatch(fetchProductsError(e));
+        } 
+            dispatch(sendProductSuccess(''));
+          
+        } catch(e) {
+            dispatch(sendProductError());
+        }
+    };
 };

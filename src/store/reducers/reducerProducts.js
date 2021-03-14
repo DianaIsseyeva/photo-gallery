@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_ERROR, CREATE_NEW_PRODUCT} from  '../actionTypes';
+import { FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_ERROR, CREATE_NEW_PRODUCT, OPEN_CURRENT_PRODUCT} from  '../actionTypes';
 
 const initialState = {
     products: [],
@@ -18,6 +18,8 @@ const reducerProducts=(state=initialState, action) => {
             return{...state, products: action.value};
         case FETCH_PRODUCTS_ERROR: 
             return{...state, error: action.error};
+        case OPEN_CURRENT_PRODUCT:
+            return{...state, currentProduct: action.value};
         default: return state;
     };
 };
