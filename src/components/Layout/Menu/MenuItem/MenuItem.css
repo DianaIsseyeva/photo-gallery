@@ -1,0 +1,40 @@
+.row {
+    display: flex;
+    border: 2px solid rgb(150, 150, 140);
+    margin-bottom: 20px;
+    padding: 20px;
+    padding-bottom: 0;  
+    font-size: 20px;
+    font-weight: bold;
+    justify-content: space-between;
+
+}
+
+.img{
+    width: 100px;
+    margin: 0 20px 20px 0;
+}
+
+.nameBlock {
+    display: flex;
+}
+
+.btn {
+    align-self: center;
+    margin-left: 20px;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: rgb(235, 200, 135);
+    color: white;
+}
+
+.text {
+    margin-right: 40px;
+}
