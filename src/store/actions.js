@@ -74,12 +74,28 @@ export const fetchProducts =() => {
 
 export const sendProduct =(newProduct) => {
     console.log(newProduct)
-    debugger
     return async dispatch => {
         dispatch(sendProductRequest());
             try {
-                await axios.post("https://js-7-march-default-rtdb.firebaseio.com/dishes.json", {name: newProduct.ame, price: newProduct.price, image: newProduct.image});
+                await axios.post("https://js-7-march-default-rtdb.firebaseio.com/dishes.json", {name: newProduct.name, price: newProduct.price, image: newProduct.image});
                 dispatch(sendProductSuccess())
+                try {
+                    let array =[];
+                    const response = await axios.get("https://js-7-march-default-rtdb.firebaseio.com/dishes.json");
+                    if(response.data) {
+                        Object.keys(response.data).forEach(id => {
+                            const product = {
+                                name: response.data[id].name,
+                                price: response.data[id].price,
+                                image: response.data[id].image,
+                                id: id
+                            };
+                            array.push(product);
+                        });
+                    dispatch(fetchProductsSuccess(array));
+                }} catch(e) {
+                    dispatch(fetchProductsError(e));
+                }
             } catch(e) {
                 dispatch(sendProductError())
             }

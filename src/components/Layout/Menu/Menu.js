@@ -34,7 +34,7 @@ const Menu =(props) => {
         props.history.push({
             pathname: '/product/admin',
         });
-        dispatch(addProduct());
+        // dispatch(addProduct());
     };
 
     useEffect (()=> {

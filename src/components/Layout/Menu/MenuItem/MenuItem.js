@@ -1,6 +1,5 @@
 import './MenuItem.css'
 const MenuItem =({image, name, price, edit, deleteItem}) => {
-
       
     return (
         <div  className="row">
@@ -11,8 +10,6 @@ const MenuItem =({image, name, price, edit, deleteItem}) => {
                     <p>{price} KZT</p>
                 </div>
             </div>
-          
-           
            <div>
                 <button className = "btn" onClick={edit}>Edit</button>
                 <button className = "btn" onClick={deleteItem}>Delete</button>
