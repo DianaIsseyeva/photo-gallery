@@ -1,20 +1,12 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useSelector, useDispatch} from "react-redux";
-import { fetchProducts, addProduct, openCurrentProduct, deleteProduct} from '../../../store/actions';
+import { fetchProducts, openCurrentProduct, deleteProduct} from '../../../store/actions';
 import MenuItem from './MenuItem/MenuItem';
 import './Menu.css';
-// import Cart from './Cart/Cart';
-
 
 const Menu =(props) => {
     const menuList = useSelector(state => state.menu.products);  
     const dispatch = useDispatch();
-    // const[isShow, setIsShow] = useState(false);
-
-    // const addToCart =(item) => {
-    //     dispatch(addProduct(item));
-    //     setIsShow(true);
-    // };
 
     const edit =(item)=> {
         props.history.push({
@@ -34,7 +26,6 @@ const Menu =(props) => {
         props.history.push({
             pathname: '/product/admin',
         });
-        // dispatch(addProduct());
     };
 
     useEffect (()=> {
@@ -49,30 +40,23 @@ const Menu =(props) => {
             </div>
             <div className = "menuBlock">
                 <div className="menu">
-                        {
-                            menuList.map(item => {
-                            return <MenuItem 
-                            key={item.id} 
-                            name={item.name}
-                            image={item.image}
-                            price={item.price}
-                            edit = {() => edit(item)}
-                            deleteItem = {() => deleteItem(item)}
-                            />
-                            }) 
-                        }
+                    {
+                        menuList.map(item => {
+                        return <MenuItem 
+                        key={item.id} 
+                        name={item.name}
+                        image={item.image}
+                        price={item.price}
+                        edit = {() => edit(item)}
+                        deleteItem = {() => deleteItem(item)}
+                        />
+                        }) 
+                    }
 
                 </div>
-                {/* <div className="cart">
-                    {isShow ? 
-                        <Cart/> 
-                    : null} 
-                </div> */}
-                   
             </div>
-           
         </>
-    )
-}
+    );
+};
 
 export default Menu;

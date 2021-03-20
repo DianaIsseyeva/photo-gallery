@@ -15,7 +15,7 @@ const MenuItem =({image, name, price, edit, deleteItem}) => {
                 <button className = "btn" onClick={deleteItem}>Delete</button>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default MenuItem;

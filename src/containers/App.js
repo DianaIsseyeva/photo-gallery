@@ -1,10 +1,10 @@
 import {Route, Switch} from 'react-router-dom';
-
 import '../App.css';
 import Menu from '../components/Layout/Menu/Menu';
 import AddProductForm from "../components/Layout/AddProductForm/AddProductForm";
 import Edit from "../components/Layout/Edit/Edit";
-import Layout from '../components/Layout/Layout'
+import Layout from '../components/Layout/Layout';
+import Cart from '../components/Layout/Menu/Cart/Cart';
 
 function App() {
   return (
@@ -12,12 +12,8 @@ function App() {
         <Switch>
             <Route path="/product/admin" component = {AddProductForm} exact/>
             <Route path="/" component = {Menu} exact/>
-            {/* <Route path="/current-product" component = {CurrentProduct} exact /> */}
             <Route path="/current-product/edit" component = {Edit} exact/>
-            {/* <Route path="/product/orders" component = {Cart} exact/> */}
-            {/* <Route exact
-            render={() => <h3>Please select a topic.</h3>}
-            /> */}
+            <Route path="/product/orders" component = {Cart} exact/>
         </Switch>
     </Layout>
   );

@@ -6,5 +6,9 @@
 }
 
 .NavigationItem:hover {
-    color: rgb(201, 57, 57);
+    color: rgb(255, 94, 0);
+}
+
+.active {
+    color: rgb(255, 94, 0);
 }

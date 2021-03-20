@@ -8,10 +8,9 @@ const NavigationItems = () => {
             <div className="NavBlock">
                 <h1 className="title">Turtle Pizza Admin</h1>
                 <ul className="NavigationItems">
-                        {/* <NavigationItem to="/" exact>Dishes</NavigationItem> */}
-                        <NavigationItem to="/" >Dishes</NavigationItem>
+                        <NavigationItem to="/" exact>Dishes</NavigationItem>
                         <span className="line">|</span>
-                        <NavigationItem to="/product/orders" >Orders</NavigationItem>
+                        <NavigationItem to="/product/orders" exact>Orders</NavigationItem>
                 </ul>
             </div>
         </>

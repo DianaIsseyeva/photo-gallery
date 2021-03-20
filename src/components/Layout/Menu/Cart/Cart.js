@@ -1,43 +1,47 @@
-import {useSelector} from "react-redux";
-import {useState} from 'react';
-import CartItem from './../../CartItem/CartItem';
-import Modal from '../../UI/Modal/Modal';
+import {useSelector, useDispatch} from "react-redux";
+import {useEffect} from 'react';
+import {v4 as uuidv4} from 'uuid';
+import {fetchOrders, deleteOrder} from '../../../../store/actions';
+import OrderList from '../../OrderList/OrderList';
 import './Cart.css';
 
 const Cart =() => {
-    const {selectedProduct, delivery, totalBill} = useSelector(state => state.cart);
-    const[isShowModal, setIsShowModal] = useState(false);
+    const ordersList = useSelector(state => state.cart.orders);
+    const delivery = useSelector(state=> state.cart.delivery);
+    const dispatch = useDispatch();
 
-    const completeOrder =() => {
-
+    const completeOrder =(item) => {
+       dispatch(deleteOrder(item));
     };
 
-    const show =() => {
-        setIsShowModal(true);
+    const totalBill=(eachOrder)=> {
+        let bill = 0;
+        eachOrder.map(orderItem =>
+             bill += parseInt(orderItem.dish.price)*parseInt(orderItem.dish.count)
+            );
+        return bill+=delivery;
     };
 
-    const close =() => {
-        setIsShowModal(false);
-    };
+    useEffect (()=> {
+        dispatch(fetchOrders());
+    }, [dispatch]);
 
     return (
-        <>
-        {/* {isShowModal===true ? <Modal close={close} show={show} order={selectedProduct}/> : null} */}
+        <div >
             {
-            selectedProduct.map(item => {
-                return <CartItem 
-                key={item.id} 
-                name={item.name}
-                price={item.price}
-                counter={item.counter}
-                />
-            }) 
-            } 
-            <p>Delivery {delivery}</p>
-            <p>Total: {totalBill}</p>
-            <button className="btnOrder" onClick = {completeOrder}>Complete order</button>
-        </>
-    )
-}
+                ordersList.map(eachOrder => { 
+                    return <div className = "order" key={uuidv4()}> 
+                    <OrderList 
+                    eachOrder={eachOrder}
+                    />
+                    <p>Delivery {delivery} KZT</p>
+                    <p>Total: {totalBill(eachOrder)} KZT</p>
+                    <button className="btnComplete" onClick = {()=>completeOrder(eachOrder)}>Complete order</button>
+                   </div>
+                })  
+            }
+        </div>
+    );
+};
 
 export default Cart;

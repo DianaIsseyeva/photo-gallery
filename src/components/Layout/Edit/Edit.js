@@ -2,10 +2,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {useState} from 'react';
 import {sendEditProduct} from '../../../store/actions';
 
-
 const Edit =(props)=> {
     const productForEdit = useSelector(state => state.menu.currentProduct);  
-    console.log(productForEdit) 
     const[updatedProduct, setUpdatedProduct] = useState({...productForEdit});
 
     const dispatch = useDispatch();
