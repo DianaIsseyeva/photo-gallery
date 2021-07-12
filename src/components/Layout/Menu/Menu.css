@@ -18,7 +18,6 @@
 
 .addDish {
     display: flex;
-    justify-content: space-between;
     padding: 20px;
     padding-bottom: 0;
     margin-left: 20px;

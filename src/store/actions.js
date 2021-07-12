@@ -70,7 +70,7 @@ export const fetchProducts =() => {
         dispatch(fetchProductsRequest());
         try {
             let array =[];
-            const response = await axios.get("https://js-7-march-default-rtdb.firebaseio.com/dishes.json");
+            const response = await axios.get("https://base-july2021-default-rtdb.firebaseio.com/dishes.json");
             if(response.data) {
                 Object.keys(response.data).forEach(id => {
                     const product = {
@@ -92,11 +92,11 @@ export const sendProduct =(newProduct) => {
     return async dispatch => {
         dispatch(sendProductRequest());
         try {
-            await axios.post("https://js-7-march-default-rtdb.firebaseio.com/dishes.json", {name: newProduct.name, price: newProduct.price, image: newProduct.image});
+            await axios.post("https://base-july2021-default-rtdb.firebaseio.com/dishes.json", {name: newProduct.name, price: newProduct.price, image: newProduct.image});
             dispatch(sendProductSuccess());
             try {
                 let array =[];
-                const response = await axios.get("https://js-7-march-default-rtdb.firebaseio.com/dishes.json");
+                const response = await axios.get("https://base-july2021-default-rtdb.firebaseio.com/dishes.json");
                 if(response.data) {
                     Object.keys(response.data).forEach(id => {
                         const product = {
@@ -122,11 +122,11 @@ export const deleteProduct = (item) => {
     return async dispatch => {
         dispatch(sendDeleteRequest());
         try {
-            await axios.delete(`https://js-7-march-default-rtdb.firebaseio.com/dishes/${item.id}.json`, item);
+            await axios.delete(`https://base-july2021-default-rtdb.firebaseio.com/dishes/${item.id}.json`, item);
             dispatch(sendDeleteSuccess());
             try {
                 let array =[];
-                const response = await axios.get("https://js-7-march-default-rtdb.firebaseio.com/dishes.json");
+                const response = await axios.get("https://base-july2021-default-rtdb.firebaseio.com/dishes.json");
                 if(response.data) {
                     Object.keys(response.data).forEach(id => {
                         const product = {
@@ -151,10 +151,10 @@ export const sendEditProduct = (item) => {
     return async dispatch => {
         dispatch(sendProductRequest());
         try {
-            await axios.put(`https://js-7-march-default-rtdb.firebaseio.com/dishes/${item.id}.json`, item);
+            await axios.put(`https://base-july2021-default-rtdb.firebaseio.com/dishes/${item.id}.json`, item);
             try {
                 let array=[];
-                const response = await axios.get("https://js-7-march-default-rtdb.firebaseio.com/dishes.json");
+                const response = await axios.get("https://base-july2021-default-rtdb.firebaseio.com/dishes.json");
                 if(response.data) {
                     Object.keys(response.data).forEach(id => {
                         const product = {
@@ -182,7 +182,7 @@ export const fetchOrders =()=> {
     return async dispatch => {
         dispatch(fetchOrdersRequest([]));
         try {
-            const response = await axios.get("https://js-7-march-default-rtdb.firebaseio.com/orders.json");
+            const response = await axios.get("https://base-july2021-default-rtdb.firebaseio.com/orders.json");
             if(response.data) {
                 Object.keys(response.data).forEach(async id => {
                     let dishId ='';
@@ -192,7 +192,7 @@ export const fetchOrders =()=> {
                     for(let i=0; i<arrOrder.length; i++) {
                     dishId = arrOrder[i][0];
                     dishCount = arrOrder[i][1];
-                    const res = await axios.get(`https://js-7-march-default-rtdb.firebaseio.com/dishes/${dishId}.json`);
+                    const res = await axios.get(`https://base-july2021-default-rtdb.firebaseio.com/dishes/${dishId}.json`);
                     arrOrder[i] = {
                         dish: {...res.data, count: dishCount, id: id}};
                     newOrder.push(arrOrder[i]);
@@ -216,9 +216,9 @@ export const deleteOrder =(item)=> {
     return async dispatch => {
         dispatch(sendDeleteOrderRequest([]));
         try {
-            await axios.delete(`https://js-7-march-default-rtdb.firebaseio.com/orders/${dish.id}.json`, dish);
+            await axios.delete(`https://base-july2021-default-rtdb.firebaseio.com/orders/${dish.id}.json`, dish);
             try {
-                const response = await axios.get("https://js-7-march-default-rtdb.firebaseio.com/orders.json");
+                const response = await axios.get("https://base-july2021-default-rtdb.firebaseio.com/orders.json");
                 if(response.data) {
                     Object.keys(response.data).forEach(async id => {
                         let dishId ='';
